@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GWA Calculator</title>
+<link rel="icon" type="image/png" href="app-logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+<!-- Background logo: stays visible in light AND dark mode -->
+<div class="bg-logo" aria-hidden="true"></div>
+
+<!-- ============ LOGIN ============ -->
+<section class="view auth-view" data-view="login">
+    <div class="auth-card">
+        <div class="school-logo"><img src="school-logo.png" alt="Southern Luzon State University Gumaca Campus logo"></div>
+        <h1>Student System</h1>
+        <p class="subtitle">LOGIN TO YOUR ACCOUNT</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="loginStudentNumber">Student Number</label>
+                <input type="text" id="loginStudentNumber" placeholder="Enter student number" required>
+            </div>
+            <div class="input-group">
+                <label for="loginUsername">Username</label>
+                <input type="text" id="loginUsername" placeholder="Enter username" required>
+            </div>
+            <div class="input-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="main-button">LOGIN</button>
+        </form>
+
+        <p class="account-text">Don't have an account? <a href="#" data-goto="register">Register</a></p>
+    </div>
+</section>
+
+<!-- ============ REGISTER ============ -->
+<section class="view auth-view" data-view="register" hidden>
+    <div class="auth-card">
+        <div class="school-logo"><img src="school-logo.png" alt="Southern Luzon State University Gumaca Campus logo"></div>
+        <h1>Create Account</h1>
+        <p class="subtitle">STUDENT REGISTRATION</p>
+
+        <form id="registerForm">
+            <div class="input-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter full name" required>
+            </div>
+            <div class="input-group">
+                <label for="studentNumber">Student Number</label>
+                <input type="text" id="studentNumber" placeholder="Enter student number" required>
+            </div>
+            <div class="input-group">
+                <label for="registerUsername">Username</label>
+                <input type="text" id="registerUsername" placeholder="Create username" required>
+            </div>
+            <div class="input-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" placeholder="Create password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+            </div>
+            <button type="submit" class="main-button">REGISTER</button>
+        </form>
+
+        <p class="account-text">Already have an account? <a href="#" data-goto="login">Login</a></p>
+    </div>
+</section>
+
+<!-- ============ DASHBOARD ============ -->
+<div class="view app-view" data-view="app" hidden>
+    <header class="topbar">
+        <button class="menu-button" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+        <img class="app-logo" src="app-logo.png" alt="GWA Calculator logo">
+        <h2>GWA Calculator</h2>
+        <button id="themeToggle" class="theme-button" type="button" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </header>
+
+    <aside id="sidebar" class="sidebar">
+        <button class="side-home" onclick="showDashboard()">⌂ Dashboard</button>
+        <div class="courses-title">COURSES</div>
+        <div id="courseMenu" class="course-menu"></div>
+        <button class="side-settings" onclick="showSettings()">⚙ SETTINGS</button>
+        <button class="side-about" onclick="showAboutSystem()">ⓘ ABOUT SYSTEM</button>
+    </aside>
+
+    <main class="main-content">
+        <section id="dashboardHome" class="welcome-card">
+            <div class="terminal-line">&gt; SYSTEM_READY</div>
+            <h1>Welcome, <span id="studentName">Student</span>!</h1>
+            <p>Student No.: <strong id="studentNumberDisplay">-</strong></p>
+            <p>Choose a course from the menu, then select your year.</p>
+
+            <div class="flow-box">
+                <span>COURSE</span><b>→</b><span>YEAR</span><b>→</b><span>SEMESTER</span><b>→</b><span>GRADES</span><b>→</b><span>GWA</span>
+            </div>
+        </section>
+
+        <section id="courseContent" class="course-content"></section>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
